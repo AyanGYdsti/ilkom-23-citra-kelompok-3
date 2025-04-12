@@ -1,0 +1,42 @@
+{# Menggunakan layout utama agar struktur halaman tetap konsisten #}
+{% extends "layouts.html" %}
+
+{# Menetapkan judul halaman yang muncul di tab browser #}
+{% block title %} 
+  OCR 
+{% endblock title %}
+
+{# Blok konten utama halaman #}
+{% block content %}
+  {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
+  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+    
+    {# Kartu sebagai wadah utama form upload dan hasil OCR #}
+    <div class="card" style="width: 40%">
+      
+      {# Header kartu yang menampilkan judul form #}
+      <div class="card-header text-center">
+        <h1>UPLOAD DOKUMEN</h1>
+      </div>
+
+      {# Bagian utama kartu berisi form dan hasil OCR (jika ada) #}
+      <div class="card-body">
+        
+        {# Formulir upload file untuk diproses oleh OCR. Menggunakan POST dan mendukung file upload #}
+        <form class="text-center" method="post" enctype="multipart/form-data">
+          <input class="form-control" type="file" name="file" required />
+          <button type="submit" class="btn btn-primary mt-2">Proses OCR</button>
+        </form>
+        {# Jika teks hasil OCR tersedia, tampilkan dengan tag <pre> agar format teks terjaga #}
+            {% if extracted_text %}
+            <div class="text-center">
+              <h2>Hasil OCR:</h2>
+            </div>
+            <pre>{{ extracted_text }}</pre>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+  {% endblock content %}
+  
