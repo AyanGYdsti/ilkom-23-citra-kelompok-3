@@ -5,3 +5,18 @@
 {% block title %} 
   Deteksi Wajah 
 {% endblock title %}
+
+{% block content %}
+  <h2>Deteksi Wajah dan Nama</h2>
+
+  {# Formulir untuk mengunggah gambar yang akan diproses untuk deteksi wajah #}
+  <form method="post" enctype="multipart/form-data">
+    <label>Upload gambar:</label><br />
+    <input
+      type="file"
+      name="file"
+      accept=".jpg,.jpeg,.png"
+      required
+    /><br /><br />
+    <button type="submit">Deteksi</button>
+  </form>
