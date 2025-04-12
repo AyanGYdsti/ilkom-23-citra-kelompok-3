@@ -20,3 +20,17 @@
     /><br /><br />
     <button type="submit">Deteksi</button>
   </form>
+
+  {# Jika gambar hasil deteksi tersedia, tampilkan gambar dan daftar nama yang dikenali #}
+  {% if image_path %}
+    <h3>Hasil Gambar:</h3>
+    <img src="{{ image_path }}" alt="Hasil Deteksi" />
+
+    <h3>Orang yang dikenali:</h3>
+    <ul>
+      {# Menampilkan setiap nama yang dikenali dari gambar #}
+      {% for name in names %}
+        <li>{{ name }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
