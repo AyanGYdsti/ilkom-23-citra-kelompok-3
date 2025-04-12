@@ -27,3 +27,16 @@
           <input class="form-control" type="file" name="file" required />
           <button type="submit" class="btn btn-primary mt-2">Proses OCR</button>
         </form>
+        {# Jika teks hasil OCR tersedia, tampilkan dengan tag <pre> agar format teks terjaga #}
+            {% if extracted_text %}
+            <div class="text-center">
+              <h2>Hasil OCR:</h2>
+            </div>
+            <pre>{{ extracted_text }}</pre>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+  {% endblock content %}
+  
