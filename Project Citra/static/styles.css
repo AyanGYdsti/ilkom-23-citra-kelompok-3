@@ -28,3 +28,16 @@
     padding: 1rem 2rem;
   }
   
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: white !important;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand img {
+    margin-right: 10px;
+  }
+  
