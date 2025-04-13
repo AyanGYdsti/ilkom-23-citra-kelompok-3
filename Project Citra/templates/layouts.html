@@ -32,3 +32,15 @@
             </li>
 
             <!-- Dropdown menu Fitur -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle {{ 'active' if request.endpoint in ['index_ocr', 'enhance_image', 'remove_background', 'convert_to_pdf', 'features'] }}" 
+                 href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                Fitur
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <!-- Link ke halaman semua fitur -->
+                <li>
+                  <a class="dropdown-item" href="{{url_for('features')}}">
+                    <i class="fas fa-th me-2"></i>Semua Fitur
+                  </a>
+                </li>
