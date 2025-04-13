@@ -64,22 +64,22 @@
                     Optical Character Recognition
                   </a>
                 </li>
-                <!-- Link ke halaman deteksi wajah -->
-                <li>
-                  <a class="dropdown-item" href="">
-                    Deteksi Wajah
-                  </a>
-                </li>
                 <!-- Link ke halaman peningkatan kualitas gambar -->
                 <li>
                   <a class="dropdown-item" href="{{url_for('enhance_image')}}">
-                    Peningkatan Kualitas Gambar
+                    Image Enhancement
                   </a>
                 </li>
                 <!-- Link ke halaman penghapusan background -->
                 <li>
-                  <a class="dropdown-item" href="">
+                  <a class="dropdown-item" href="{{url_for('remove_background')}}">
                     Hapus Background
+                  </a>
+                </li>
+                <!-- Link ke halaman deteksi wajah -->
+                <li>
+                  <a class="dropdown-item" href="{{url_for('convert_to_pdf')}}">
+                    IMAGE to PDF 
                   </a>
                 </li>
               </ul>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, redirect, url_for, send_file
 import os
 from PIL import Image
 import pytesseract
@@ -7,15 +7,21 @@ from werkzeug.utils import secure_filename
 import numpy as np
 import cv2
 import base64
+from rembg import remove
+from fpdf import FPDF
+
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['ENHANCED_FOLDER'] = os.path.join(app.config['UPLOAD_FOLDER'], 'enhanced')
+app.config['PDF_FOLDER'] = os.path.join(app.config['UPLOAD_FOLDER'], 'pdf')
 
 UPLOAD_FOLDER = "uploads"
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['ENHANCED_FOLDER'], exist_ok=True)
+os.makedirs(app.config['PDF_FOLDER'], exist_ok=True)
 
 @app.route('/')
 def index():
@@ -96,5 +102,71 @@ def enhance_image():
 def download_file(filename):
     return send_from_directory(app.config['ENHANCED_FOLDER'], filename, as_attachment=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/remove-background', methods=['GET', 'POST'])
+def remove_background():
+    image_path = None
+    download_filename = None
+
+    if request.method == 'POST':
+        file = request.files.get('file')
+        if not file or file.filename == '':
+            return 'No file selected'
+
+        filename = secure_filename(file.filename)
+        upload_dir = 'uploads/bg_removed'
+        os.makedirs(upload_dir, exist_ok=True)
+
+        input_path = os.path.join(upload_dir, filename)
+        file.save(input_path)
+
+        # Hapus background
+        input_bytes = open(input_path, "rb").read()
+        output_bytes = remove(input_bytes)
+
+        # Simpan hasil PNG transparan
+        output_filename = f"no_bg_{os.path.splitext(filename)[0]}.png"
+        output_path = os.path.join(upload_dir, output_filename)
+        with open(output_path, "wb") as out_file:
+            out_file.write(output_bytes)
+
+        image_path = f"/uploads/bg_removed/{output_filename}"
+        download_filename = output_filename
+
+    return render_template("remove_background.html", image_path=image_path, download_filename=download_filename)
+
+@app.route('/uploads/bg_removed/<filename>')
+def serve_removed_file(filename):
+    return send_from_directory('uploads/bg_removed', filename)
+
+@app.route('/convert-to-pdf', methods=['GET', 'POST'])
+def convert_to_pdf():
+    if request.method == 'POST':
+        files = request.files.getlist('images')
+        image_list = []
+
+        for file in files:
+            if file and file.filename:
+                filename = secure_filename(file.filename)
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+
+                # Konversi gambar ke mode RGB
+                img = Image.open(filepath).convert('RGB')
+                image_list.append(img)
+
+        if not image_list:
+            return "Tidak ada gambar valid yang dipilih.", 400
+
+        # Simpan semua gambar ke satu file PDF
+        output_pdf_path = os.path.join(app.config['PDF_FOLDER'], 'output.pdf')
+        image_list[0].save(output_pdf_path, save_all=True, append_images=image_list[1:])
+
+        return redirect(url_for('download_pdf'))
+
+    return render_template('convert_pdf.html')
+
+
+@app.route('/download-pdf')
+def download_pdf():
+    pdf_path = os.path.join(app.config['PDF_FOLDER'], 'output.pdf')
+    return send_file(pdf_path, as_attachment=True)
