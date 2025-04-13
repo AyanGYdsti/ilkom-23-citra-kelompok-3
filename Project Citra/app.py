@@ -170,3 +170,7 @@ def convert_to_pdf():
 def download_pdf():
     pdf_path = os.path.join(app.config['PDF_FOLDER'], 'output.pdf')
     return send_file(pdf_path, as_attachment=True)
+
+
+if _name_ == '_main_':
+    app.run(debug=True)
