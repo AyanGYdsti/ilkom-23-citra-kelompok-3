@@ -28,20 +28,20 @@
           <ul class="navbar-nav ms-auto">
             <!-- Menu Beranda -->
             <li class="nav-item">
-              <a class="nav-link {{ 'active' if request.endpoint == 'index' }}" href="{{url_for('index')}}">Beranda</a>
+              <a class="nav-link {{ 'active' if request.endpoint == 'index' }}" href="{{url_for('index')}}">Home Page</a>
             </li>
 
             <!-- Dropdown menu Fitur -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle {{ 'active' if request.endpoint in ['index_ocr', 'enhance_image', 'remove_background', 'convert_to_pdf', 'features'] }}" 
                  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                Fitur
+                Features
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <!-- Link ke halaman semua fitur -->
                 <li>
                   <a class="dropdown-item" href="{{url_for('features')}}">
-                    <i class="fas fa-th me-2"></i>Semua Fitur
+                    <i class="fas fa-th me-2"></i>All Features
                   </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
@@ -60,7 +60,7 @@
                 <!-- Link ke halaman penghapusan background -->
                 <li>
                   <a class="dropdown-item" href="{{url_for('remove_background')}}">
-                    <i class="fas fa-cut me-2"></i>Hapus Background
+                    <i class="fas fa-cut me-2"></i>Remove Background
                   </a>
                 </li>
                 <!-- Link ke halaman konversi PDF -->

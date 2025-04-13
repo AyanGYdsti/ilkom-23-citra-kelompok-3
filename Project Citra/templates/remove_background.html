@@ -3,23 +3,23 @@
 
 {# Menetapkan judul halaman yang muncul di tab browser #}
 {% block title %}
-  Hapus Background
+  Remove Background
 {% endblock title %}
 
 {# Blok konten utama halaman #}
 {% block content %}
-  <h2>Hapus Background Gambar</h2>
+  <h2>Remove Image Backgroun</h2>
 
   {# Form untuk mengupload gambar yang akan diproses #}
   <form method="post" enctype="multipart/form-data">
-    <label>Upload gambar:</label><br />
+    <label>Upload Image:</label><br />
     <input type="file" name="file" accept="image/*" required /><br /><br />
-    <button type="submit">Hapus Background</button>
+    <button type="submit">Remove Background</button>
   </form>
 
   {# Menampilkan gambar hasil jika proses berhasil #}
   {% if image_path %}
-    <h3>Hasil:</h3>
+    <h3>Results :</h3>
     <img
       src="{{ image_path }}"
       alt="Gambar Tanpa Background"
@@ -28,7 +28,7 @@
 
     {# Tombol untuk mendownload gambar hasil tanpa background #}
     <a href="{{ image_path }}" download="{{ download_filename }}">
-      <button>Download Hasil</button>
+      <button>Download Results</button>
     </a>
   {% endif %}
 {% endblock content %}

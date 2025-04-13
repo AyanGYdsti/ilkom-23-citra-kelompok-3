@@ -16,7 +16,7 @@
       
       {# Header kartu yang menampilkan judul form #}
       <div class="card-header text-center">
-        <h1>UPLOAD DOKUMEN</h1>
+        <h1>UPLOAD DOCUMENT</h1>
       </div>
 
       {# Bagian utama kartu berisi form dan hasil OCR (jika ada) #}
@@ -25,12 +25,12 @@
         {# Formulir upload file untuk diproses oleh OCR. Menggunakan POST dan mendukung file upload #}
         <form class="text-center" method="post" enctype="multipart/form-data">
           <input class="form-control" type="file" name="file" required />
-          <button type="submit" class="btn btn-primary mt-2">Proses OCR</button>
+          <button type="submit" class="btn btn-primary mt-2">OCR Proccess</button>
         </form>
         {# Jika teks hasil OCR tersedia, tampilkan dengan tag <pre> agar format teks terjaga #}
             {% if extracted_text %}
             <div class="text-center">
-              <h2>Hasil OCR:</h2>
+              <h2>Results :</h2>
             </div>
             <pre>{{ extracted_text }}</pre>
           {% endif %}

@@ -3,18 +3,18 @@
 
 {# Menetapkan judul halaman pada tab browser #}
 {% block title %} 
-  pdf
+  IMAGE to PDF
 {% endblock title %}
 
 {# Blok konten utama halaman #}
 {% block content %}
-<h1>Gambar ke PDF Converter</h1>
+<h1>IMAGE to PDF Converter</h1>
 
 {# Form upload untuk memilih satu atau beberapa gambar yang akan dikonversi #}
 <form method="POST" enctype="multipart/form-data">
   
     {# Label untuk input gambar #}
-    <label for="images">Pilih satu atau beberapa gambar:</label><br>
+    <label for="images">Select one or more images:</label><br>
     
     {# Input file dengan atribut multiple untuk memungkinkan pemilihan banyak gambar #}
     <input 
@@ -26,6 +26,6 @@
       required><br><br>
 
       {# Tombol submit untuk memproses konversi gambar ke PDF #}
-    <button type="submit">Konversi ke PDF</button>
+    <button type="submit">Convert to PDF</button>
   </form>
 {% endblock content %}

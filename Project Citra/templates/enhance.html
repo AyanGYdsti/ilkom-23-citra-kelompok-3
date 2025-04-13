@@ -3,12 +3,12 @@
 
 {# Menetapkan judul halaman pada tab browser #}
 {% block title %} 
-  Peningkatan Kualitas Gambar 
+  Image Enhancement 
 {% endblock title %}
 
 {# Blok konten utama halaman #}
 {% block content %}
-  <h2>Peningkatan Kualitas Gambar</h2>
+  <h2>Image Enhancement</h2>
 
   {# Form untuk mengunggah gambar yang akan ditingkatkan kualitasnya #}
   <form method="POST" enctype="multipart/form-data">
@@ -18,10 +18,10 @@
 
   {# Jika hasil peningkatan gambar tersedia, tampilkan pratinjau dan tautan unduhan #}
   {% if image_data %}
-    <h3>Hasil:</h3>
+    <h3>Results :</h3>
     <img src="data:image/jpeg;base64,{{ image_data }}" width="400" />
     <br /><br />
-    <a href="{{ download_url }}" download>Download Gambar</a>
+    <a href="{{ download_url }}" download>Download Image</a>
   {% endif %}
   
 {% endblock content %}
