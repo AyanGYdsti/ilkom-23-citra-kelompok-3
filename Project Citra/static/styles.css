@@ -94,3 +94,23 @@
     border-bottom: none;
   }
   
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+  }
+  
+  /* Feature Sections */
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--dark);
+    position: relative;
+    display: inline-block;
+  }
+  
