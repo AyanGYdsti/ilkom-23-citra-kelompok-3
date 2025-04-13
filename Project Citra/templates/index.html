@@ -8,30 +8,96 @@
 
 {# Blok konten utama halaman #}
 {% block content %}
-  {# Kontainer dengan gaya flex untuk menengahkan konten secara vertikal dan horizontal #}
-  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+  {# Kontainer utama dengan flex untuk penempatan vertikal dan horizontal #}
+  <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     
-    {# Kartu utama berisi nama-nama anggota kelompok #}
-    <div class="card text-center" style="width: 40%">
-
-      {# Header kartu menampilkan nama kelompok #}
-      <div class="card-header">
-        <h1>KELOMPOK III</h1>
-      </div>
-
-      {# Bagian isi kartu menampilkan daftar nama anggota kelompok #}
-      <div class="card-body">
-        <ul style="list-style-type: none">
-          <li>YAYAN GISNA YUDASTI</li>
-          <li>MUHAMMAD SAFRIL</li>
-          <li>MUHAMMAD IZHAR</li>
-          <li>FALAH ZIKRI</li>
-          <li>ZAKIATUL BALQIS MAWADDA AZZAHRA</li>
-          <li>ZAKKIYA FITRA RAHMA DINA</li>
-          <li>MIFTAHUL JANNAH</li>
-        </ul>
-      </div>
+    {# Kartu utama dengan shadow dan rounded corners #}
+    <div class="card shadow-lg border-0" style="width: 70%; max-width: 600px; border-radius: 15px;">
       
+      {# Header kartu dengan background berwarna #}
+      <div class="card-header bg-primary text-white py-3" style="border-radius: 15px 15px 0 0 !important;">
+        <h2 class="text-center mb-0">Welcome to Our Image Processing Application</h2>
+      </div>
+
+      {# Body kartu dengan padding yang cukup #}
+      <div class="card-body px-4 px-md-5 py-4">
+        
+        {# Deskripsi aplikasi #}
+        <div class="mb-4 text-center">
+          <p class="mb-4">
+            Welcome to our web-based image processing application!
+This project is designed to help you easily perform a variety of image operations such as extracting text from images or PDFs (OCR), enhancing image quality, removing image backgrounds automatically, and converting multiple images into a single PDF file.
+Please use the menu above to explore and try out each feature.
+          </p>
+        </div>
+
+        {# Pembatas antara konten dan tim #}
+        <hr class="my-4 mx-auto" style="width: 80%; border-top: 2px dashed #eee;">
+
+        {# Bagian tim pengembang #}
+        <div class="team-section bg-light p-4 rounded">
+          <h5 class="text-center mb-4">Developed by Group 3</h5>
+          
+          {# Daftar anggota tim dalam 2 kolom #}
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  YAYAN GISNA YUDASTI
+                </li>
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  MUHAMMAD SAFRIL
+                </li>
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  MUHAMMAD IZHAR
+                </li>
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  FALAH ZIKRI
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-unstyled">
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  ZAKIATUL BALQIS MAWADDA AZZAHRA
+                </li>
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  ZAKKIYA FITRA RAHMA DINA
+                </li>
+                <li class="py-1 d-flex align-items-center">
+                  <i class="fas fa-user-circle me-2 text-muted"></i>
+                  MIFTAHUL JANNAH
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  {# CSS kustom untuk efek tambahan #}
+  <style>
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    .team-section {
+      background-color: #f8f9fa;
+      transition: background-color 0.3s ease;
+    }
+    .team-section:hover {
+      background-color: #e9ecef;
+    }
+  </style>
 {% endblock content %}
