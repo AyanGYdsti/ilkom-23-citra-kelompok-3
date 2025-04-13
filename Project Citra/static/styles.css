@@ -11,3 +11,20 @@
     --info: #b5179e;
   }
   
+  /* General Styles */
+  body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+  
+  /* Modern Navbar */
+  .navbar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+  }
+  
