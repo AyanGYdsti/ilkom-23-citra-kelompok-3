@@ -1,4 +1,3 @@
-# Import library yang diperlukan
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for, send_file
 import os
 from PIL import Image
@@ -12,7 +11,7 @@ from rembg import remove
 from fpdf import FPDF
 
 
-# Inisialisasi Flask dan konfigurasi folder
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['ENHANCED_FOLDER'] = os.path.join(app.config['UPLOAD_FOLDER'], 'enhanced')
@@ -20,17 +19,14 @@ app.config['PDF_FOLDER'] = os.path.join(app.config['UPLOAD_FOLDER'], 'pdf')
 
 UPLOAD_FOLDER = "uploads"
 
-# Membuat folder jika belum ada
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['ENHANCED_FOLDER'], exist_ok=True)
 os.makedirs(app.config['PDF_FOLDER'], exist_ok=True)
 
-# Beranda utama
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Fitur OCR: Ekstraksi teks dari gambar atau file PDF
 @app.route('/ocr', methods=['GET', 'POST'])
 def index_ocr():
     extracted_text = None
@@ -47,7 +43,6 @@ def index_ocr():
             img = Image.open(filepath)
             extracted_text = pytesseract.image_to_string(img)
 
-            # Proses OCR untuk file PDF
         elif file.filename.lower().endswith('.pdf'):
             images = convert_from_path(filepath, poppler_path=r"C:\Poppler\Library\bin")
             text_list = [pytesseract.image_to_string(img) for img in images]
@@ -55,7 +50,6 @@ def index_ocr():
 
     return render_template('index_ocr.html', extracted_text=extracted_text)
 
-# Fitur Peningkatan Kualitas Gambar
 @app.route('/enhance', methods=['GET', 'POST'])
 def enhance_image():
     image_data = None
@@ -71,7 +65,7 @@ def enhance_image():
         filename = f"enhanced_{original_filename}"
         save_path = os.path.join(ENHANCED_FOLDER, filename)
 
-        # Membaca gambar dari buffer dan resize
+        # Baca dan proses gambar
         in_memory_file = np.frombuffer(file.read(), np.uint8)
         img = cv2.imdecode(in_memory_file, cv2.IMREAD_COLOR)
         img = cv2.resize(img, (600, 600))
@@ -84,19 +78,17 @@ def enhance_image():
         lab = cv2.merge((cl, a, b))
         img_clahe = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
 
-        # Menajamkan gambar
         kernel = np.array([[0, -0.5, 0],
                            [-0.5, 3, -0.5],
                            [0, -0.5, 0]])
         sharpened = cv2.filter2D(img_clahe, -1, kernel)
-        
-        # Tingkatkan saturasi dan kecerahan
+
         hsv = cv2.cvtColor(sharpened, cv2.COLOR_BGR2HSV)
         hsv[..., 1] = cv2.multiply(hsv[..., 1], 1.1)
         hsv[..., 2] = cv2.multiply(hsv[..., 2], 1.05)
         enhanced = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
 
-        # Simpan hasil gambar
+        # Simpan hasil
         cv2.imwrite(save_path, enhanced)
 
         # Encode base64 untuk preview
@@ -106,12 +98,10 @@ def enhance_image():
 
     return render_template('enhance.html', image_data=image_data, download_url=download_url)
 
-# Endpoint untuk mendownload hasil dari folder enhanced
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(app.config['ENHANCED_FOLDER'], filename, as_attachment=True)
 
-# Fitur Hapus Background Gambar (menggunakan rembg)
 @app.route('/remove-background', methods=['GET', 'POST'])
 def remove_background():
     image_path = None
@@ -129,28 +119,25 @@ def remove_background():
         input_path = os.path.join(upload_dir, filename)
         file.save(input_path)
 
-        # Proses penghapusan background
+        # Hapus background
         input_bytes = open(input_path, "rb").read()
         output_bytes = remove(input_bytes)
 
-        # Simpan hasil ke file PNG transparan
+        # Simpan hasil PNG transparan
         output_filename = f"no_bg_{os.path.splitext(filename)[0]}.png"
         output_path = os.path.join(upload_dir, output_filename)
         with open(output_path, "wb") as out_file:
             out_file.write(output_bytes)
 
-        # Jalur hasil untuk ditampilkan dan diunduh
         image_path = f"/uploads/bg_removed/{output_filename}"
         download_filename = output_filename
 
     return render_template("remove_background.html", image_path=image_path, download_filename=download_filename)
 
-# Menyajikan file hasil penghapusan background
 @app.route('/uploads/bg_removed/<filename>')
 def serve_removed_file(filename):
     return send_from_directory('uploads/bg_removed', filename)
 
-# Fitur Konversi Beberapa Gambar Menjadi 1 File PDF
 @app.route('/convert-to-pdf', methods=['GET', 'POST'])
 def convert_to_pdf():
     if request.method == 'POST':
@@ -178,8 +165,12 @@ def convert_to_pdf():
 
     return render_template('convert_pdf.html')
 
-# Endpoint untuk mengunduh hasil PDF
+
 @app.route('/download-pdf')
 def download_pdf():
     pdf_path = os.path.join(app.config['PDF_FOLDER'], 'output.pdf')
     return send_file(pdf_path, as_attachment=True)
+ 
+@app.route('/features')
+def features():
+    return render_template('features.html')

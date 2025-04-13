@@ -1,0 +1,67 @@
+{% extends "layouts.html" %}
+
+{% block title %}Fitur Projek Citra{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="section-title text-center mb-5">Our Features</h1>
+  
+  <div class="row">
+    <!-- Image Enhancement -->
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="feature-card h-100" id="image-enhancement">
+        <div class="card-header text-center">
+          <i class="fas fa-magic card-icon"></i>
+          <h3>Image Enhancement</h3>
+        </div>
+        <div class="card-body">
+          <p>Improve your image quality with our advanced enhancement algorithms.</p>
+          <a href="{{url_for('enhance_image')}}" class="btn btn-primary w-100">Try Now</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Remove Background -->
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="feature-card h-100" id="remove-background">
+        <div class="card-header text-center">
+          <i class="fas fa-cut card-icon"></i>
+          <h3>Remove Background</h3>
+        </div>
+        <div class="card-body">
+          <p>Instantly remove backgrounds from your images with AI technology.</p>
+          <a href="{{url_for('remove_background')}}" class="btn btn-primary w-100">Try Now</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- IMAGE to PDF -->
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="feature-card h-100" id="image-to-pdf">
+        <div class="card-header text-center">
+          <i class="fas fa-file-pdf card-icon"></i>
+          <h3>IMAGE to PDF</h3>
+        </div>
+        <div class="card-body">
+          <p>Convert your images to high-quality PDF documents easily.</p>
+          <a href="{{url_for('convert_to_pdf')}}" class="btn btn-primary w-100">Try Now</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- OCR -->
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="feature-card h-100" id="ocr">
+        <div class="card-header text-center">
+          <i class="fas fa-text-height card-icon"></i>
+          <h3>OCR Results</h3>
+        </div>
+        <div class="card-body">
+          <p>Extract text from images with our Optical Character Recognition.</p>
+          <a href="{{url_for('index_ocr')}}" class="btn btn-primary w-100">Try Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
