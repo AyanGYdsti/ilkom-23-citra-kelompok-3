@@ -114,3 +114,14 @@
     display: inline-block;
   }
   
+  .section-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 4px;
+    bottom: -10px;
+    left: 0;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+  }
+  
