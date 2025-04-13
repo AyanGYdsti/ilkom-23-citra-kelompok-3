@@ -185,5 +185,3 @@ def download_pdf():
     return send_file(pdf_path, as_attachment=True)
 
 
-if _name_ == '_main_':
-    app.run(debug=True)
