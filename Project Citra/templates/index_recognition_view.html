@@ -8,3 +8,13 @@
 
 {# Blok konten utama halaman #}
 {% block content %}
+  <div class="container">
+
+    {# Navigasi ke dua fitur utama: deteksi wajah dan tambah wajah baru #}
+    <nav>
+      <a href="{{ url_for('face_recognition_route') }}">Deteksi Wajah</a>
+      <a href="{{ url_for('add_known_face') }}">Tambah Wajah</a>
+    </nav>
+
+  </div>
+{% endblock content %}
