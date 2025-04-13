@@ -125,3 +125,21 @@
     border-radius: 2px;
   }
   
+  /* Buttons */
+  .btn-primary {
+    background-color: var(--primary);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+  }
+  
