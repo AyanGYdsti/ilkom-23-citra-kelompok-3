@@ -172,3 +172,21 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     border-left: 5px solid var(--primary);
   }
+    
+  /* Feature Specific Styles */
+  #image-enhancement {
+    background-color: rgba(72, 149, 239, 0.1);
+  }
+  
+  #remove-background {
+    background-color: rgba(247, 37, 133, 0.1);
+  }
+  
+  #image-to-pdf {
+    background-color: rgba(76, 201, 240, 0.1);
+  }
+  
+  #ocr {
+    background-color: rgba(248, 150, 30, 0.1);
+  }
+  
