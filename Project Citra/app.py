@@ -1,3 +1,4 @@
+# Import library yang diperlukan
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for, send_file
 import os
 from PIL import Image
