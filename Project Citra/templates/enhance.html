@@ -1,0 +1,27 @@
+{# Menggunakan layout utama agar struktur halaman konsisten #}
+{% extends "layouts.html" %}
+
+{# Menetapkan judul halaman pada tab browser #}
+{% block title %} 
+  Peningkatan Kualitas Gambar 
+{% endblock title %}
+
+{# Blok konten utama halaman #}
+{% block content %}
+  <h2>Peningkatan Kualitas Gambar</h2>
+
+  {# Form untuk mengunggah gambar yang akan ditingkatkan kualitasnya #}
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required />
+    <button type="submit">Enhance</button>  {# Tombol untuk memproses peningkatan gambar #}
+  </form>
+
+  {# Jika hasil peningkatan gambar tersedia, tampilkan pratinjau dan tautan unduhan #}
+  {% if image_data %}
+    <h3>Hasil:</h3>
+    <img src="data:image/jpeg;base64,{{ image_data }}" width="400" />
+    <br /><br />
+    <a href="{{ download_url }}" download>Download Gambar</a>
+  {% endif %}
+  
+{% endblock content %}
