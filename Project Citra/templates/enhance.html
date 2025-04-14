@@ -3,25 +3,42 @@
 
 {# Menetapkan judul halaman pada tab browser #}
 {% block title %} 
-  Peningkatan Kualitas Gambar 
+  Peningkatan Kualitas Gambar
 {% endblock title %}
 
 {# Blok konten utama halaman #}
 {% block content %}
-  <h2>Peningkatan Kualitas Gambar</h2>
+  {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
+  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+    
+    {# Kartu sebagai wadah utama form upload dan hasil enhancement #}
+    <div class="card" style="width: 40%">
+      
+      {# Header kartu yang menampilkan judul form #}
+      <div class="card-header text-center">
+        <h1>PENINGKATAN KUALITAS GAMBAR</h1>
+      </div>
 
-  {# Form untuk mengunggah gambar yang akan ditingkatkan kualitasnya #}
-  <form method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" required />
-    <button type="submit">Enhance</button>  {# Tombol untuk memproses peningkatan gambar #}
-  </form>
+      {# Bagian utama kartu berisi form dan hasil enhancement (jika ada) #}
+      <div class="card-body">
+        
+        {# Formulir upload file untuk diproses #}
+        <form class="text-center" method="post" enctype="multipart/form-data">
+          <input class="form-control" type="file" name="file" required />
+          <button type="submit" class="btn btn-primary mt-2">Enhance</button>
+        </form>
 
-  {# Jika hasil peningkatan gambar tersedia, tampilkan pratinjau dan tautan unduhan #}
-  {% if image_data %}
-    <h3>Hasil:</h3>
-    <img src="data:image/jpeg;base64,{{ image_data }}" width="400" />
-    <br /><br />
-    <a href="{{ download_url }}" download>Download Gambar</a>
-  {% endif %}
-  
+        {# Jika hasil enhancement tersedia, tampilkan #}
+        {% if image_data %}
+          <div class="text-center mt-3">
+            <h4>Hasil:</h4>
+            <img src="data:image/jpeg;base64,{{ image_data }}" class="img-fluid" style="max-width: 100%" />
+            <br /><br />
+            <a href="{{ download_url }}" download class="btn btn-success">Download Gambar</a>
+          </div>
+        {% endif %}
+          
+      </div>
+    </div>
+  </div>
 {% endblock content %}

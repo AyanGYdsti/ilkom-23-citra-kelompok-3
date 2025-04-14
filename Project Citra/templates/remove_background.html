@@ -8,27 +8,47 @@
 
 {# Blok konten utama halaman #}
 {% block content %}
-  <h2>Hapus Background Gambar</h2>
+  {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
+  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+    
+    {# Kartu sebagai wadah utama form upload dan hasil penghapusan background #}
+    <div class="card" style="width: 40%">
+      
+      {# Header kartu yang menampilkan judul form #}
+      <div class="card-header text-center">
+        <h1>HAPUS BACKGROUND GAMBAR</h1>
+      </div>
 
-  {# Form untuk mengupload gambar yang akan diproses #}
-  <form method="post" enctype="multipart/form-data">
-    <label>Upload gambar:</label><br />
-    <input type="file" name="file" accept="image/*" required /><br /><br />
-    <button type="submit">Hapus Background</button>
-  </form>
+      {# Bagian utama kartu berisi form dan hasil (jika ada) #}
+      <div class="card-body">
+        
+        {# Formulir upload file untuk diproses #}
+        <form class="text-center" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Upload gambar:</label>
+            <input class="form-control" type="file" name="file" accept="image/*" required />
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">Hapus Background</button>
+        </form>
 
-  {# Menampilkan gambar hasil jika proses berhasil #}
-  {% if image_path %}
-    <h3>Hasil:</h3>
-    <img
-      src="{{ image_path }}"
-      alt="Gambar Tanpa Background"
-      style="max-width: 300px"
-    /><br /><br />
-
-    {# Tombol untuk mendownload gambar hasil tanpa background #}
-    <a href="{{ image_path }}" download="{{ download_filename }}">
-      <button>Download Hasil</button>
-    </a>
-  {% endif %}
+        {# Jika hasil penghapusan background tersedia, tampilkan #}
+        {% if image_path %}
+          <div class="text-center mt-3">
+            <h4>Hasil:</h4>
+            <img
+              src="{{ image_path }}"
+              alt="Gambar Tanpa Background"
+              class="img-fluid"
+              style="max-width: 100%"
+            />
+            <br /><br />
+            <a href="{{ image_path }}" download="{{ download_filename }}" class="btn btn-success">
+              Download Hasil
+            </a>
+          </div>
+        {% endif %}
+          
+      </div>
+    </div>
+  </div>
 {% endblock content %}
