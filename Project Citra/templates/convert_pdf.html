@@ -3,29 +3,49 @@
 
 {# Menetapkan judul halaman pada tab browser #}
 {% block title %} 
-  pdf
+  PDF Converter
 {% endblock title %}
 
 {# Blok konten utama halaman #}
 {% block content %}
-<h1>Gambar ke PDF Converter</h1>
-
-{# Form upload untuk memilih satu atau beberapa gambar yang akan dikonversi #}
-<form method="POST" enctype="multipart/form-data">
-  
-    {# Label untuk input gambar #}
-    <label for="images">Pilih satu atau beberapa gambar:</label><br>
+  {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
+  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
     
-    {# Input file dengan atribut multiple untuk memungkinkan pemilihan banyak gambar #}
-    <input 
-      type="file" 
-      id="images" 
-      name="images" 
-      accept="image/*" 
-      multiple 
-      required><br><br>
+    {# Kartu sebagai wadah utama form upload dan hasil konversi #}
+    <div class="card" style="width: 40%">
+      
+      {# Header kartu yang menampilkan judul form #}
+      <div class="card-header text-center">
+        <h1>GAMBAR KE PDF CONVERTER</h1>
+      </div>
 
-      {# Tombol submit untuk memproses konversi gambar ke PDF #}
-    <button type="submit">Konversi ke PDF</button>
-  </form>
+      {# Bagian utama kartu berisi form dan hasil konversi (jika ada) #}
+      <div class="card-body">
+        
+        {# Formulir upload file untuk dikonversi ke PDF #}
+        <form class="text-center" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="images">Pilih satu atau beberapa gambar:</label>
+            <input 
+              class="form-control" 
+              type="file" 
+              id="images" 
+              name="images" 
+              accept="image/*" 
+              multiple 
+              required>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Konversi ke PDF</button>
+        </form>
+
+        {# Jika ada pesan hasil konversi, tampilkan #}
+        {% if message %}
+          <div class="alert alert-info mt-3 text-center">
+            {{ message }}
+          </div>
+        {% endif %}
+          
+      </div>
+    </div>
+  </div>
 {% endblock content %}
