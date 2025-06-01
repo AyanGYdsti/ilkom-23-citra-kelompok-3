@@ -1,0 +1,60 @@
+{% extends "layouts.html" %}
+
+{% block title %} Color Boost {% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card" style="width: 40%">
+        <div class="card-header text-center">
+            <h2 class="text-center mb-4">Upload Gambar untuk Color Boost</h2>
+        </div>
+
+        <div class="card-body">
+            <form class="text-center" method="POST" enctype="multipart/form-data" class="text-center mb-4">
+                <input class="form-control" type="file" name="image" accept="image/*" required>
+                <button type="submit" class="btn btn-primary mt-2">Boost Color</button>
+            </form>
+
+            {% if original_image_data %}
+            <div class="row">
+                <div class="col-md-6 text-center">
+                <h4>Gambar Asli</h4>
+                <img src="data:image/jpeg;base64,{{ original_image_data }}" style="max-width:100%; height:auto;">
+                </div>
+                <div class="col-md-6 text-center">
+                <h4>Gambar Color Boosted</h4>
+                <img src="data:image/jpeg;base64,{{ boosted_image_data }}" style="max-width:100%; height:auto;">
+                </div>
+            </div>
+        
+            <div class="row mt-4">
+                <div class="col-md-6">
+                <h5>Matriks Piksel Asli (cuplikan 5x5 grayscale)</h5>
+                <table class="table table-bordered table-sm" style="width:100%">
+                    {% for row in original_snippet %}
+                    <tr>
+                        {% for val in row %}
+                        <td>{{ val }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>
+                <div class="col-md-6">
+                <h5>Matriks Piksel Color Boost (cuplikan 5x5 grayscale)</h5>
+                <table class="table table-bordered table-sm" style="width:100%">
+                    {% for row in boosted_snippet %}
+                    <tr>
+                        {% for val in row %}
+                        <td>{{ val }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+</div>
+{% endblock content %}
