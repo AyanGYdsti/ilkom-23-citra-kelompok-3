@@ -11,6 +11,25 @@
 
     <!-- Judul halaman, dapat ditentukan oleh halaman yang mewarisi layout ini -->
     <title>{% block title %} {% endblock title %}</title>
+    <style>
+    /* Submenu default (ke kiri) */
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+      top: 0;
+      right: 100%; /* ubah dari left: 100% menjadi right: 100% */
+      margin-top: -1px;
+      display: none;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: block;
+    }
+    </style>
+
+
   </head>
 
   <body>
@@ -31,46 +50,74 @@
               <a class="nav-link {{ 'active' if request.endpoint == 'index' }}" href="{{url_for('index')}}">Home Page</a>
             </li>
 
-            <!-- Dropdown menu Fitur -->
+           <!-- Dropdown menu Fitur -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle {{ 'active' if request.endpoint in ['index_ocr', 'enhance_image', 'remove_background', 'convert_to_pdf', 'features'] }}" 
-                 href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Features
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
                 <!-- Link ke halaman semua fitur -->
                 <li>
-                  <a class="dropdown-item" href="{{url_for('features')}}">
+                  <a class="dropdown-item" href="{{ url_for('features') }}">
                     <i class="fas fa-th me-2"></i>All Features
                   </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
-                <!-- Link ke halaman OCR -->
+
+                <!-- Fitur utama -->
                 <li>
-                  <a class="dropdown-item" href="{{url_for('index_ocr')}}">
+                  <a class="dropdown-item" href="{{ url_for('index_ocr') }}">
                     <i class="fas fa-text-height me-2"></i>Optical Character Recognition
                   </a>
                 </li>
-                <!-- Link ke halaman peningkatan kualitas gambar -->
                 <li>
-                  <a class="dropdown-item" href="{{url_for('enhance_image')}}">
+                  <a class="dropdown-item" href="{{ url_for('enhance_image') }}">
                     <i class="fas fa-magic me-2"></i>Image Enhancement
                   </a>
                 </li>
-                <!-- Link ke halaman penghapusan background -->
                 <li>
-                  <a class="dropdown-item" href="{{url_for('remove_background')}}">
+                  <a class="dropdown-item" href="{{ url_for('remove_background') }}">
                     <i class="fas fa-cut me-2"></i>Remove Background
                   </a>
                 </li>
-                <!-- Link ke halaman konversi PDF -->
                 <li>
-                  <a class="dropdown-item" href="{{url_for('convert_to_pdf')}}">
+                  <a class="dropdown-item" href="{{ url_for('convert_to_pdf') }}">
                     <i class="fas fa-file-pdf me-2"></i>IMAGE to PDF
                   </a>
                 </li>
+
+                <!-- Submenu Pengolahan Citra -->
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#">Pengolahan Citra</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="{{ url_for('invert') }}">
+                        <i class="fas fa-adjust me-2"></i>Invert Citra
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{{ url_for('color_boost') }}">
+                        <i class="fas fa-palette me-2"></i>Color Boost Citra
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{{ url_for('threshold_image') }}">
+                        <i class="fas fa-sliders-h me-2"></i>Threshold Citra
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{{ url_for('brightness') }}">
+                        <i class="fas fa-sun me-2"></i>Brightness Citra
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
               </ul>
             </li>
+
           </ul>
         </div>
       </div>
