@@ -9,7 +9,7 @@
 {# Blok konten utama halaman #}
 {% block content %}
   {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
-  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+  <div class="d-flex justify-content-center align-items-center">
     
     {# Kartu sebagai wadah utama form upload dan hasil penghapusan background #}
     <div class="card" style="width: 40%">
@@ -32,21 +32,28 @@
         </form>
 
         {# Jika hasil penghapusan background tersedia, tampilkan #}
-        {% if image_path %}
-          <div class="text-center mt-3">
-            <h4>Hasil:</h4>
-            <img
-              src="{{ image_path }}"
-              alt="Gambar Tanpa Background"
-              class="img-fluid"
-              style="max-width: 100%"
-            />
-            <br /><br />
-            <a href="{{ image_path }}" download="{{ download_filename }}" class="btn btn-success">
-              Download Results
-            </a>
-          </div>
-        {% endif %}
+        <div style="overflow-y: scroll;height:70vh">
+          {% if image_path and original_image_path %}
+            <div class="text-center mt-3">
+              <h4>Hasil:</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <p><strong>Sebelum:</strong></p>
+                  <img src="{{ original_image_path }}" alt="Gambar Asli" class="img-fluid" style="max-width: 100%" />
+                </div>
+                <div class="col-md-6">
+                  <p><strong>Sesudah:</strong></p>
+                  <img src="{{ image_path }}" alt="Gambar Tanpa Background" class="img-fluid" style="max-width: 100%" />
+                </div>
+              </div>
+              <br />
+              <a href="{{ image_path }}" download="{{ download_filename }}" class="btn btn-success">
+                Download Hasil
+              </a>
+            </div>
+          {% endif %}
+        </div>
+
           
       </div>
     </div>
