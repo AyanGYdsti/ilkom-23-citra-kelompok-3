@@ -1,0 +1,77 @@
+{# Menggunakan layout utama agar struktur halaman tetap konsisten #}
+{% extends "layouts.html" %}
+
+{# Menetapkan judul halaman yang muncul di tab browser #}
+{% block title %} 
+  Invert 
+{% endblock title %}
+
+{# Blok konten utama halaman #}
+{% block content %}
+{# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
+  <div class="d-flex justify-content-center align-items-center">
+
+    {# Kartu sebagai wadah utama form upload dan hasil OCR #}
+    <div class="card" style="width: 40%">
+
+        {# Header kartu yang menampilkan judul form #}
+        <div class="card-header text-center">
+            <h2>Upload Citra untuk Inversi</h2>
+        </div>
+
+        {# Bagian utama kartu berisi form dan hasil OCR (jika ada) #}
+        <div class="card-body">
+            <form class="text-center" method="POST" enctype="multipart/form-data">
+                <input class="form-control" type="file" name="image" accept="image/*" required>
+                <button type="submit"  class="btn btn-primary mt-2">Proses</button>
+            </form>
+            <div style="overflow-y: scroll;height:70vh">
+                <div class="row">
+                    <div class="col-6">
+                        {% if img_original_path %}
+                            <h3>Gambar Asli:</h3>
+                            <img src="{{ img_original_path }}" alt="Original Image" style="width: 100%;">
+                        {% endif %}
+                    </div>
+                    <div class="col-6">
+                        {% if img_path %}
+                            <h3>Hasil Citra Inversi:</h3>
+                            <img src="{{ img_path }}" alt="Inverted Image" style="width: 100%;">
+                        {% endif %}
+                    </div>
+                </div>
+
+
+                {% if image_matrix_original %}
+                    <h5>Matriks Piksel Asli (10x10):</h5>
+                    <div style="overflow-x: auto; max-width: 100%;">
+                        <table class="table table-bordered table-sm text-center">
+                            {% for row in image_matrix_original %}
+                                <tr>
+                                    {% for val in row %}
+                                        <td>{{ val }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if image_matrix_inverted %}
+                    <h5>Matriks Piksel Hasil Inversi (10x10):</h5>
+                    <div style="overflow-x: auto; max-width: 100%;">
+                        <table class="table table-bordered table-sm text-center">
+                            {% for row in image_matrix_inverted %}
+                                <tr>
+                                    {% for val in row %}
+                                        <td>{{ val }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
