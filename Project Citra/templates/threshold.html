@@ -1,0 +1,63 @@
+{% extends "layouts.html" %}
+
+{% block title %} Thresholding Citra {% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="card" style="width: 40%">
+        <div class="card-header text-center">
+            <h2 class="text-center">Thresholding Citra</h2>
+        </div>
+
+        <div class="card-body">
+            <form class="text-center" method="POST" enctype="multipart/form-data" class="text-center mt-3 mb-4">
+                <input class="form-control" type="file" name="image" accept="image/*" required>
+                <button type="submit" class="btn btn-primary mt-2">Proses Threshold</button>
+            </form>
+
+            <div style="overflow-y: scroll;height:70vh">
+
+                {% if original_image_data %}
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                    <h4>Gambar Asli</h4>
+                    <img src="data:image/jpeg;base64,{{ original_image_data }}" class="img-fluid mb-2">
+                    </div>
+                    <div class="col-md-6 text-center">
+                    <h4>Hasil Thresholding</h4>
+                    <img src="data:image/jpeg;base64,{{ thresholded_image_data }}" class="img-fluid mb-2">
+                    </div>
+                </div>
+        
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                    <h5>Matriks Grayscale Asli (5x5)</h5>
+                    <table class="table table-bordered table-sm" style="width:100%">
+                        {% for row in original_snippet %}
+                        <tr>
+                            {% for val in row %}
+                            <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                    <div class="col-md-6">
+                    <h5>Matriks Hasil Threshold (5x5)</h5>
+                    <table class="table table-bordered table-sm" style="width:100%">
+                        {% for row in thresholded_snippet %}
+                        <tr>
+                            {% for val in row %}
+                            <td>{{ val }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
