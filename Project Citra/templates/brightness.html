@@ -1,0 +1,54 @@
+{% extends "layouts.html" %}
+
+{% block title %}Brightness{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+
+    <div class="card" style="width: 40%">
+
+        <div class="card-header text-center">
+            <h2 class="text-center">Peningkatan Brightness</h2>
+        </div>
+        <div class="card-body">
+            <form class="text-center" method="POST" enctype="multipart/form-data" class="mb-4">
+                <input class="form-control" type="file" name="image" accept="image/*" required class="form-control mb-2">
+                <button type="submit" class="btn btn-primary">Proses</button>
+            </form>
+            <div style="overflow-y: scroll;height:70vh">
+                {% if original_image_data %}
+                    <div class="row mt-4">
+                        <div class="col-md-6 text-center">
+                        <h5>Gambar Asli</h5>
+                        <img src="data:image/jpeg;base64,{{ original_image_data }}" class="img-fluid" />
+                        </div>
+                        <div class="col-md-6 text-center">
+                        <h5>Gambar Brightness ↑</h5>
+                        <img src="data:image/jpeg;base64,{{ bright_image_data }}" class="img-fluid" />
+                        </div>
+                    </div>
+    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                        <h5>Matriks Grayscale Asli (5x5)</h5>
+                        <table class="table table-bordered table-sm text-center">
+                            {% for row in original_matrix %}
+                            <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+                            {% endfor %}
+                        </table>
+                        </div>
+                        <div class="col-md-6">
+                        <h5>Matriks Grayscale Bright (5x5)</h5>
+                        <table class="table table-bordered table-sm text-center">
+                            {% for row in bright_matrix %}
+                            <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+                            {% endfor %}
+                        </table>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
