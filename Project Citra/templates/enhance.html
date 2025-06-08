@@ -9,7 +9,7 @@
 {# Blok konten utama halaman #}
 {% block content %}
   {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
-  <div class="d-flex justify-content-center align-items-center" style="height: 80vh">
+  <div class="d-flex justify-content-center align-items-center">
     
     {# Kartu sebagai wadah utama form upload dan hasil enhancement #}
     <div class="card" style="width: 40%">
@@ -24,20 +24,54 @@
         
         {# Formulir upload file untuk diproses #}
         <form class="text-center" method="post" enctype="multipart/form-data">
-          <input class="form-control" type="file" name="file" required />
+          <input class="form-control" type="file" name="file" required accept="mimes:.png,.jpeg,.jpg" />
           <button type="submit" class="btn btn-primary mt-2">Enhance</button>
         </form>
 
         {# Jika hasil enhancement tersedia, tampilkan #}
+        <div style="overflow-y: scroll;height:70vh">
         {% if image_data %}
           <div class="text-center mt-3">
             <h4>Hasil:</h4>
-            <img src="data:image/jpeg;base64,{{ image_data }}" class="img-fluid" style="max-width: 100%" />
-            <br /><br />
+            
+            <div class="row">
+              <div class="col">
+                <h5>Sebelum:</h5>
+                <img src="data:image/jpeg;base64,{{ original_image_data }}" class="img-fluid" style="max-width: 100%" />
+              </div>
+              <div class="col">
+                <h5>Sesudah:</h5>
+                <img src="data:image/jpeg;base64,{{ image_data }}" class="img-fluid" style="max-width: 100%" />
+              </div>
+            </div>
+
+            <br />
             <a href="{{ download_url }}" download class="btn btn-success">Download Gambar</a>
           </div>
+
+          <div class="mt-4">
+            <h5>Cuplikan Matriks Grayscale (5x5):</h5>
+            <div class="row">
+              <div class="col">
+                <h6>Sebelum:</h6>
+                <pre>
+        {% for row in original_snippet %}
+        {{ row }}
+        {% endfor %}
+                </pre>
+              </div>
+              <div class="col">
+                <h6>Sesudah:</h6>
+                <pre>
+        {% for row in enhanced_snippet %}
+        {{ row }}
+        {% endfor %}
+                </pre>
+              </div>
+            </div>
+          </div>
         {% endif %}
-          
+        </div>
       </div>
     </div>
   </div>
