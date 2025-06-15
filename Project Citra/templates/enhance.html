@@ -3,7 +3,7 @@
 
 {# Menetapkan judul halaman pada tab browser #}
 {% block title %} 
-  Peningkatan Kualitas Gambar
+  IMAGE ENHANCEMENT
 {% endblock title %}
 
 {# Blok konten utama halaman #}
@@ -16,7 +16,7 @@
       
       {# Header kartu yang menampilkan judul form #}
       <div class="card-header text-center">
-        <h1>PENINGKATAN KUALITAS GAMBAR</h1>
+        <h1>IMAGE ENHANCEMENT</h1>
       </div>
 
       {# Bagian utama kartu berisi form dan hasil enhancement (jika ada) #}
@@ -32,7 +32,7 @@
         <div style="overflow-y: scroll;height:70vh">
         {% if image_data %}
           <div class="text-center mt-3">
-            <h4>Hasil:</h4>
+            <h4>Result:</h4>
             
             <div class="row">
               <div class="col">
@@ -46,14 +46,14 @@
             </div>
 
             <br />
-            <a href="{{ download_url }}" download class="btn btn-success">Download Gambar</a>
+            <a href="{{ download_url }}" download class="btn btn-success">Download Image</a>
           </div>
 
           <div class="mt-4">
-            <h5>Cuplikan Matriks Grayscale (5x5):</h5>
+            <h5>Matrix 5x5 :</h5>
             <div class="row">
               <div class="col">
-                <h6>Sebelum:</h6>
+                <h6>Before:</h6>
                 <pre>
         {% for row in original_snippet %}
         {{ row }}
@@ -61,7 +61,7 @@
                 </pre>
               </div>
               <div class="col">
-                <h6>Sesudah:</h6>
+                <h6>After:</h6>
                 <pre>
         {% for row in enhanced_snippet %}
         {{ row }}
