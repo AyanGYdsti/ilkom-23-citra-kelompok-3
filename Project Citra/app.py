@@ -411,3 +411,6 @@ def download_pdf():
 @app.route('/features')
 def features():
     return render_template('features.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
