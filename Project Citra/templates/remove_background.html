@@ -8,16 +8,21 @@
 
 {# Blok konten utama halaman #}
 {% block content %}
+  {# Kontainer untuk menengahkan konten secara vertikal dan horizontal #}
   <div class="d-flex justify-content-center align-items-center">
     
+    {# Kartu sebagai wadah utama form upload dan hasil penghapusan background #}
     <div class="card" style="width: 40%">
       
+      {# Header kartu yang menampilkan judul form #}
       <div class="card-header text-center">
         <h1>HAPUS BACKGROUND GAMBAR</h1>
       </div>
 
+      {# Bagian utama kartu berisi form dan hasil (jika ada) #}
       <div class="card-body">
         
+        {# Formulir upload file untuk diproses #}
         <form class="text-center" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label>Upload gambar:</label>
@@ -26,6 +31,7 @@
           <button type="submit" class="btn btn-primary mt-2">Hapus Background</button>
         </form>
 
+        {# Jika hasil penghapusan background tersedia, tampilkan #}
         <div style="overflow-y: scroll;height:70vh">
           {% if image_path and original_image_path %}
             <div class="text-center mt-3">
