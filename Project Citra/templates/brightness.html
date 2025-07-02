@@ -39,7 +39,7 @@
                         <table class="table table-bordered table-sm text-center">
                             {% for row in original_matrix %}
                             <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
-                              <!-- Looping menampilkan setiap nilai pixel grayscale -->
+                            <!-- Looping menampilkan setiap nilai pixel grayscale -->
                             {% endfor %}
                         </table>
                         </div>
@@ -52,9 +52,11 @@
                         </table>
                         </div>
                     </div>
+                 <!-- Penutup kondisi if untuk menampilkan hasil jika gambar sudah diproses -->
                 {% endif %}
             </div>
         </div>
     </div>
 </div>
+<!-- Penutup blok konten halaman -->
 {% endblock %}
