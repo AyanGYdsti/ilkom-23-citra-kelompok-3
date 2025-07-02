@@ -11,6 +11,7 @@ from rembg import remove
 from fpdf import FPDF
 import shutil
 
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['ENHANCED_FOLDER'] = os.path.join(app.config['UPLOAD_FOLDER'], 'enhanced')
