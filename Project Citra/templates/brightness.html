@@ -1,6 +1,8 @@
 {% extends "layouts.html" %}
 
+
 {% block title %}Brightness{% endblock %}
+
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-center">
@@ -28,4 +30,27 @@
                         </div>
                     </div>
     
-                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                        <h5>Matriks Grayscale Asli (5x5)</h5>
+                        <table class="table table-bordered table-sm text-center">
+                            {% for row in original_matrix %}
+                            <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+                            {% endfor %}
+                        </table>
+                        </div>
+                        <div class="col-md-6">
+                        <h5>Matriks Grayscale Bright (5x5)</h5>
+                        <table class="table table-bordered table-sm text-center">
+                            {% for row in bright_matrix %}
+                            <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+                            {% endfor %}
+                        </table>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
