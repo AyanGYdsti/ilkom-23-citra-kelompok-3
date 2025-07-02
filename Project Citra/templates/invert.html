@@ -26,6 +26,21 @@
                 <button type="submit"  class="btn btn-primary mt-2">Proses</button>
             </form>
             <div style="overflow-y: scroll;height:70vh">
+                <div class="row">
+                    <div class="col-6">
+                        {% if img_original_path %}
+                            <h3>Gambar Asli:</h3>
+                            <img src="{{ img_original_path }}" alt="Original Image" style="width: 100%;">
+                        {% endif %}
+                    </div>
+                    <div class="col-6">
+                        {% if img_path %}
+                            <h3>Hasil Citra Inversi:</h3>
+                            <img src="{{ img_path }}" alt="Inverted Image" style="width: 100%;">
+                        {% endif %}
+                    </div>
+                </div>
+
 
                 {% if image_matrix_original %}
                     <h5>Matriks Piksel Asli (10x10):</h5>
