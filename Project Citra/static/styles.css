@@ -38,14 +38,14 @@
   }
   
   .navbar-brand img {
-    margin-right: 10px;
+    margin-right: 20px;
   }
   
   .nav-link {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9) !important;
     margin: 0 1rem;
-    transition: all 0.3s ease;
+    transition: all 0.7s ease;
     position: relative;
   }
   
