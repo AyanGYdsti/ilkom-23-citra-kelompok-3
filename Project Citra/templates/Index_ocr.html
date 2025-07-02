@@ -22,23 +22,4 @@
       {# Bagian utama kartu berisi form dan hasil OCR (jika ada) #}
       <div class="card-body">
         
-        {# Formulir upload file untuk diproses oleh OCR. Menggunakan POST dan mendukung file upload #}
-        <form class="text-center" method="post" enctype="multipart/form-data">
-          <input class="form-control" type="file" name="file" required accept="application/pdf" />
-          <button type="submit" class="btn btn-primary mt-2">OCR Proccess</button>
-        </form>
-        {# Jika teks hasil OCR tersedia, tampilkan dengan tag <pre> agar format teks terjaga #}
-          <div style="overflow-y: scroll;height:70vh">
-            {% if extracted_text %}
-              <div class="text-center">
-                <h2>Results :</h2>
-              </div>
-              <pre>{{ extracted_text }}</pre>
-            {% endif %}
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  {% endblock content %}
-  
+        
