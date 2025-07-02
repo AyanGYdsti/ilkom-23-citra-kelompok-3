@@ -198,7 +198,7 @@ def convert_to_pdf():
 def invert():
     image_matrix = None
     img_url = None
-    img_url_original = None  # Tambahan
+    img_url_original = None  
 
     if request.method == 'POST':
         file = request.files['image']
