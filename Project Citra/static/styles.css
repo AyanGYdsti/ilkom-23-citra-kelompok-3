@@ -1,9 +1,9 @@
 /* Modern Color Palette */
 :root {
-    --primary: #d9dcea;
+    --primary: #4361ee;
     --secondary: #3f37c9;
     --accent: #4895ef;
-    --light: #203d5a;
+    --light: #f8f9fa;
     --dark: #212529;
     --success: #4cc9f0;
     --danger: #f72585;
@@ -14,7 +14,7 @@
   /* General Styles */
   body {
     font-family: 'Poppins', 'Segoe UI', sans-serif;
-    background-color: #000001;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
     color: var(--dark);
@@ -24,7 +24,7 @@
   /* Modern Navbar */
   .navbar {
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 1rem 2rem;
   }
   
@@ -38,14 +38,14 @@
   }
   
   .navbar-brand img {
-    margin-right: 20px;
+    margin-right: 10px;
   }
   
   .nav-link {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9) !important;
     margin: 0 1rem;
-    transition: all 0.7s ease;
+    transition: all 0.3s ease;
     position: relative;
   }
   
